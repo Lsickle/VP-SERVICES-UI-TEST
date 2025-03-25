@@ -12,11 +12,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        // Se ordenan los seeders para que al momento de ejecutarse no hayan inconvenientes con los atributos relacionados a otros seeders.
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        // Primero, se ejecutan los roles y permisos
+        $this->call(RoleAndPermissionSeeder::class);
+        
+        // Se ejecuta el seeder de la operación
+        $this->call(OperacionSeeder::class);
+
+        // Se ejecuta el seeder de usuarios
+        $this->call(UserSeeder::class);
     }
 }
