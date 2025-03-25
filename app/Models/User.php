@@ -60,4 +60,12 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+     * Relación: un usario pertenece a una operación.
+     */
+    public function operacion() 
+    {
+        return $this->belongsTo(Operacion::class); // Se agrega la relación de el modelo users con modelo operaciones
+    }
 }
