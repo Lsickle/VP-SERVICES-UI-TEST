@@ -32,7 +32,7 @@ Route::middleware([
 });
 
  // Rutas para Permisos
- Route::middleware(['permission:Administrar Permisos'])->prefix('seguridad/permisos')->name('seguridad.permisos.')->group(function () {
+Route::middleware(['permission:Administrar Permisos'])->prefix('seguridad/permisos')->name('seguridad.permisos.')->group(function () {
     Route::get('/', [PermissionController::class, 'index'])->name('index');
     Route::get('/crear', [PermissionController::class, 'create'])->name('create');
     Route::post('/', [PermissionController::class, 'store'])->name('store');
