@@ -16,20 +16,16 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
-
 </head>
 
 <body class="font-sans antialiased bg-white min-h-screen flex flex-col">
     <!-- Header -->
     @include('components.header')
 
-    <!-- Contenedor principal: se apila en móviles y en desktop se coloca en fila -->
-    <div class="flex flex-col md:flex-row flex-1">
-        <!-- Área de contenido -->
-        <main class="flex-1 p-6">
-            @yield('content')
-        </main>
-    </div>
+    <!-- Área de contenido: se expande y centra su contenido verticalmente -->
+    <main class="flex-grow flex items-center justify-center px-4">
+        @yield('content')
+    </main>
 
     <!-- Footer -->
     @include('components.footer')
