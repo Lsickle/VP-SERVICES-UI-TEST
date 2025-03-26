@@ -21,7 +21,7 @@
 <body class="font-sans antialiased bg-white min-h-screen flex flex-col">
     <!-- Header -->
     @include('components.header')
-
+    
     <!-- Área de contenido: se expande y centra su contenido verticalmente -->
     <main class="flex-grow flex items-center justify-center px-4">
         @yield('content')
