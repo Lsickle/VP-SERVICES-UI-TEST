@@ -1,83 +1,78 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layouts.guest')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+@section('content')
+<!-- Sección de Bienvenida -->
+<section class="text-center px-4">
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+        Bienvenido a Vps-MicroServices
+    </h1>
+    <p class="text-base md:text-lg text-gray-600 mb-6">
+        Accede y haz uso de nuestros Micro Servicios empresariales.
+    </p>
+    <a href="{{ route('login') }}"
+        class="inline-flex items-center bg-orange-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition transform duration-300 hover:bg-orange-600 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-75 mb-4">
+        Ingresar a Vps-MicroServices
+    </a>
+</section>
 
-    <title>Vps-MicroServices</title>
+<!-- Cards informativos horizontales -->
+<section class="w-full max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
+    <!-- Card de Acceso -->
+    <div class="bg-blue-100 border border-blue-200 rounded-lg shadow-md p-6 text-center">
+        <h2 class="text-xl md:text-2xl font-bold text-blue-900 mb-2">¿Cómo Acceder?</h2>
+        <p class="text-xs md:text-sm text-blue-800 break-words">
+            Si ya cuentas con una cuenta de usuario personal empresarial, da click en el botón naranja de ingreso e
+            inicia sesión.
+        </p>
+    </div>
+    <!-- Card de Quiénes Somos -->
+    <div class="bg-green-100 border border-green-200 rounded-lg shadow-md p-6 text-center">
+        <h2 class="text-xl md:text-2xl font-bold text-green-900 mb-2">¿Quiénes Somos?</h2>
+        <p class="text-xs md:text-sm text-green-800 break-words">
+            Conoce a nuestro equipo y descubre nuestro compromiso con la calidad y la eficiencia.
+        </p>
+    </div>
+    <!-- Card de Servicios -->
+    <div class="bg-purple-100 border border-purple-200 rounded-lg shadow-md p-6 text-center">
+        <h2 class="text-xl md:text-2xl font-bold text-purple-900 mb-2">Nuestros Servicios</h2>
+        <p class="text-xs md:text-sm text-purple-800 break-words">
+            Descubre la amplia gama de microservicios diseñados para potenciar tus procesos empresariales.
+        </p>
+    </div>
+</section>
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ asset('logos/VigiaLogo.png') }}">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-    <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-    <!-- Styles -->
-    @livewireStyles
-</head>
-
-<body class="font-sans antialiased bg-white min-h-screen flex flex-col items-center justify-center">
-    <header class="w-full bg-blue-900 py-6 flex justify-center shadow-lg">
-        <div class="max-w-4xl w-full flex justify-center">
-            <img src="{{ asset('logos/VigiaLogo.png') }}" alt="Logo Vigia"
-                class="w-48 h-auto p-4 bg-white rounded-lg shadow-md">
+<!-- Slider de Proyectos -->
+<section class="w-full max-w-4xl mx-auto mt-10 px-4">
+    <h2 class="text-xl md:text-2xl font-bold text-gray-800 mb-6 text-center">
+        Microservicios en Funcionamiento
+    </h2>
+    <div class="relative">
+        <!-- Contenedor del slider con barra de desplazamiento visible -->
+        <div
+            class="auto-slider flex whitespace-nowrap overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
+            <!-- Slide 1 -->
+            <div class="slide-item inline-block w-64 md:w-80 mr-4 bg-orange-100 rounded-lg shadow-md p-6">
+                <h3 class="text-lg md:text-xl font-semibold mb-2">Ingresos-Vps:</h3>
+                <p class="text-xs md:text-sm text-gray-700 whitespace-normal break-words">
+                    Control y autorización de accesos a instalaciones.
+                </p>
+            </div>
+            <!-- Slide 2 -->
+            <div class="slide-item inline-block w-64 md:w-80 mr-4 bg-orange-100 rounded-lg shadow-md p-6">
+                <h3 class="text-lg md:text-xl font-semibold mb-2">Tracking-Vps:</h3>
+                <p class="text-xs md:text-sm text-gray-700 whitespace-normal break-words">
+                    Monitoreo de seguimiento de pedidos realizados por clientes.
+                </p>
+            </div>
+            <!-- Slide 3 -->
+            <div class="slide-item inline-block w-64 md:w-80 mr-4 bg-orange-100 rounded-lg shadow-md p-6">
+                <h3 class="text-lg md:text-xl font-semibold mb-2">Proyecto 3:</h3>
+                <p class="text-xs md:text-sm text-gray-700 whitespace-normal break-words">
+                    Breve Descripción.
+                </p>
+            </div>
+            <!-- Agrega más slides si es necesario -->
         </div>
-    </header>
-
-    <main class="flex-1 flex flex-col items-center justify-center text-center p-6">
-
-        <!-- Mensajes de alerta -->
-        @if(session('error'))
-        <div class="bg-red-600 text-white p-4 rounded mb-4">
-            {{ session('error') }}
-        </div>
-        @endif
-
-        @auth
-        @if( ! auth()->user()->hasAnyRole(['Administrador', 'Autorizador']) )
-        <div class="bg-red-600 text-white p-4 rounded mb-4">
-            Su usuario NO está asociado a un Rol con permisos para ingresar, por favor contacte al Administrador.
-        </div>
-        @endif
-        @endauth
-
-        <!-- Título y mensaje descriptivo -->
-        <h1 class="text-4xl font-bold text-gray-800 mb-4">Bienvenido a Vps-MicroServices</h1>
-        <p class="text-lg text-gray-600 mb-6">Accede a nuestros aplicativo web mediante tu usuario registrado con permisos, y usa nuestros Micro-Servicios con nuestra Interfaz Intuitiva.</p>
-
-        <!-- Botones con animación -->
-        @auth
-        @if(auth()->user()->hasAnyRole(['Administrador', 'Autorizador']))
-        <a href="{{ url('/dashboard') }}"
-            class="bg-blue-800 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition transform duration-300 hover:bg-blue-900 hover:scale-105">
-            Volver al Menú Principal
-        </a>
-        @else
-        <form action="{{ route('logout') }}" method="POST">
-            @csrf
-            <button type="submit"
-                class="bg-blue-900 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition transform duration-300 hover:bg-blue-800 hover:scale-105">
-                Cerrar Sesión
-            </button>
-        </form>
-        @endif
-        @else
-        <a href="{{ route('login') }}"
-            class="bg-orange-500 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition transform duration-300 hover:bg-orange-600 hover:scale-105">
-            Ingresar a Vps-MicroServices
-        </a>
-        @endauth
-
-    </main>
-
-    @stack('modals')
-    @livewireScripts
-</body>
-
-</html>
+    </div>
+</section>
+@endsection

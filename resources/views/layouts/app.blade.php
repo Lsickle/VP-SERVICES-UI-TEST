@@ -34,7 +34,7 @@
                     {{ $header }}
                 </div>
                 <div>
-                    @include('partials.navigation-menu')
+                    @include('components.navigation-menu')
                 </div>
             </div>
         </header>
