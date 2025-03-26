@@ -5,46 +5,30 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <meta name="description"
+        content="Plataforma de microservicios de Vigia Plus Services. Accede a herramientas empresariales para gestión de ingresos, tracking y más.">
     <title>Vps-MicroServices</title>
-
     <!-- Favicon -->
-
+    <link rel="icon" type="image/png" href="{{ asset('logos/VigiaLogo.png') }}">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-    <!-- Styles -->
     @livewireStyles
 </head>
 
-<body class="font-sans antialiased bg-gray-100">
-    <x-banner />
+<body class="font-sans antialiased bg-white min-h-screen flex flex-col">
+    <!-- Header -->
+    @include('components.header')
 
-    <div class="min-h-screen">
-        <!-- Page Heading -->
-        @if (isset($header))
-        <header class="bg-orange-500 shadow">
-            <div
-                class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center text-white font-semibold">
-                <div>
-                    {{ $header }}
-                </div>
-                <div>
-                    @include('components.navigation-menu')
-                </div>
-            </div>
-        </header>
-        @endif
+    <!-- Área de contenido: se expande y centra su contenido verticalmente -->
+    <main class="flex-grow flex items-center justify-center px-4">
+        @yield('content')
+    </main>
 
-        <!-- Page Content -->
-        <main class="p-6">
-            {{ $slot }}
-        </main>
-    </div>
+    <!-- Footer -->
+    @include('components.footer')
 
     @stack('modals')
     @livewireScripts
