@@ -19,13 +19,13 @@
 </head>
 
 <body class="font-sans antialiased bg-white min-h-screen flex flex-col">
-    <!-- Sidebar para usuarios autenticados y con rol respectivo-->
+    <!-- Sidebar para usuarios autenticados y con rol respectivo -->
     @include('partials.sidebar')
 
     <!-- Header -->
     @include('components.header')
 
-    <!-- Área de contenido: se expande y centra su contenido verticalmente -->
+    <!-- Área de contenido: centra su contenido verticalmente -->
     <main class="px-4 md:ml-64">
         @yield('content')
     </main>
