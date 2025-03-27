@@ -16,15 +16,13 @@ document.addEventListener("DOMContentLoaded", function () {
     if (sidebarToggle && sidebar) {
         // Listener para mostrar/ocultar el sidebar al hacer clic en el botón
         sidebarToggle.addEventListener("click", function (event) {
-            event.stopPropagation(); // Evita que el clic se propague al documento
+            event.stopPropagation();
             sidebar.classList.toggle("-translate-x-full");
         });
 
         // Listener para cerrar el sidebar si se hace clic fuera de él
         document.addEventListener("click", function (event) {
-            // Verifica que el sidebar esté visible (sin la clase -translate-x-full)
             if (!sidebar.classList.contains("-translate-x-full")) {
-                // Si el clic se realiza fuera del sidebar y del botón toggle
                 if (
                     !sidebar.contains(event.target) &&
                     !sidebarToggle.contains(event.target)
@@ -41,23 +39,69 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (sidebarSearch && sidebarList) {
         sidebarSearch.addEventListener("input", function () {
-            // Normaliza el filtro de búsqueda
+            // Obtiene el filtro normalizado
             let filter = normalizeText(sidebarSearch.value);
 
-            // Itera sobre cada <li> para filtrar
-            let items = sidebarList.getElementsByTagName("li");
-            for (let i = 0; i < items.length; i++) {
-                let text = normalizeText(items[i].textContent);
-                items[i].style.display =
-                    text.indexOf(filter) > -1 ? "" : "none";
+            // Obtiene todos los hijos directos del sidebarList
+            let children = Array.from(sidebarList.children);
+
+            let currentHeading = null;
+            let currentItems = [];
+
+            // Función para procesar la sección actual
+            function processSection() {
+                if (!currentHeading) return;
+                // Se normaliza el texto del heading
+                let headingText = normalizeText(currentHeading.textContent);
+                let headingMatches = headingText.indexOf(filter) > -1;
+                let anyItemMatches = false;
+
+                // Procesa cada <li> de la sección
+                currentItems.forEach((item) => {
+                    let itemText = normalizeText(item.textContent);
+                    let itemMatches = itemText.indexOf(filter) > -1;
+                    // Si el heading coincide, se muestran todos los ítems
+                    if (headingMatches || itemMatches || filter === "") {
+                        item.style.display = "";
+                        if (itemMatches) {
+                            anyItemMatches = true;
+                        }
+                    } else {
+                        item.style.display = "none";
+                    }
+                });
+
+                // Se muestra el heading si:
+                // - El filtro está vacío
+                // - El heading coincide con el filtro
+                // - Alguno de los items coincide
+                currentHeading.style.display =
+                    filter === "" || headingMatches || anyItemMatches
+                        ? ""
+                        : "none";
             }
 
-            // Para los <h2>: si se está buscando (filter distinto de vacío), se ocultan
-            // De lo contrario se muestran
-            let headings = sidebarList.getElementsByTagName("h2");
-            for (let i = 0; i < headings.length; i++) {
-                headings[i].style.display = filter === "" ? "" : "none";
-            }
+            // Recorre los elementos del sidebarList
+            children.forEach((child) => {
+                let tag = child.tagName.toLowerCase();
+
+                if (tag === "h2") {
+                    // Si ya había una sección, la procesamos antes de iniciar una nueva
+                    processSection();
+                    // Inicia nueva sección
+                    currentHeading = child;
+                    currentItems = [];
+                    // Mientras se escribe algo, oculta temporalmente el heading (se mostrará si corresponde en processSection)
+                    currentHeading.style.display = filter === "" ? "" : "none";
+                } else if (tag === "li") {
+                    currentItems.push(child);
+                } else if (tag === "hr") {
+                    // Opcional: puedes ocultar o mostrar los <hr> según convenga.
+                    child.style.display = filter === "" ? "" : "none";
+                }
+            });
+            // Procesa la última sección
+            processSection();
         });
     }
 });
