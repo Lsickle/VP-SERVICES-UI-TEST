@@ -1,23 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="flex">
-<!-- Contenido Principal -->
 <div id="mainContent" class="flex-1 p-8 md:ml-64 transition-all">
-    <h2 class="center text-xl font-semibold text-white">Panel de Control Administrativo</h2>
+    <h2 class="text-xl font-semibold text-gray-800 mb-6">Panel de Control Administrativo</h2>
 
     <!-- Bienvenida -->
-    <div class="bg-white rounded-xl p-6 shadow-sm">
+    <div class="bg-white rounded-xl p-6 shadow-sm mb-6">
         <h1 class="text-3xl font-bold text-gray-800">Bienvenido, {{ Auth::user()->name }}</h1>
     </div>
 
     <!-- Estadísticas -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
         <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-blue-500">
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-sm text-gray-500">Total Permisos</p>
-                    <p class="text-3xl font-bold text-gray-800 mt-2">{{\Spatie\Permission\Models\Permission::count() }}</p>
+                    <p class="text-3xl font-bold text-gray-800 mt-2">{{ \Spatie\Permission\Models\Permission::count() }}</p>
                 </div>
                 <div class="bg-blue-100 p-3 rounded-full">
                     <span class="text-blue-600 text-xl">🔑</span>
@@ -51,7 +49,7 @@
     </div>
 
     <!-- Últimos Usuarios Registrados -->
-    <div class="bg-white rounded-xl p-6 shadow-sm">
+    <div class="bg-white rounded-xl p-6 shadow-sm mb-6">
         <h3 class="text-lg font-semibold text-gray-800 mb-4">Últimos Usuarios Registrados</h3>
         <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200">
@@ -67,8 +65,7 @@
                     <tr>
                         <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-800">{{ $user->name }}</td>
                         <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-800">{{ $user->email }}</td>
-                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-800">{{
-                            $user->created_at->format('d/m/Y') }}</td>
+                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-800">{{ $user->created_at->format('d/m/Y') }}</td>
                     </tr>
                     @endforeach
                 </tbody>
