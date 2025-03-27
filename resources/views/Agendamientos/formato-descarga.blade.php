@@ -4,7 +4,7 @@
 <div class="container mx-auto px-4 mt-5">
     <h2 class="text-2xl font-bold mb-6 text-center">Agendar Entrega</h2>
     
-    <form action="{{ route('agendamiento.enviar') }}" method="POST">
+    <form action="{{ route('agendamiento.formato-descarga.enviar') }}" method="POST">
         @csrf
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
