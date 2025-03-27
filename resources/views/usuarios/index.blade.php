@@ -26,29 +26,30 @@
         </div>
     @endif
 
-    <div class="bg-white rounded-lg shadow overflow-hidden">
+    <!-- Contenedor con scroll horizontal para dispositivos pequeños -->
+    <div class="bg-white rounded-lg shadow overflow-x-auto">
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
                 <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Correo Electrónico</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rol</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Operación</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
+                    <th class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs sm:text-sm font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
+                    <th class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs sm:text-sm font-medium text-gray-500 uppercase tracking-wider">Correo Electrónico</th>
+                    <th class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs sm:text-sm font-medium text-gray-500 uppercase tracking-wider">Rol</th>
+                    <th class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs sm:text-sm font-medium text-gray-500 uppercase tracking-wider">Operación</th>
+                    <th class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs sm:text-sm font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
                 @foreach($usuarios as $usuario)
                 <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $usuario->name }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $usuario->email }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">
+                    <td class="px-3 py-2 sm:px-6 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-800">{{ $usuario->name }}</td>
+                    <td class="px-3 py-2 sm:px-6 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-800">{{ $usuario->email }}</td>
+                    <td class="px-3 py-2 sm:px-6 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-800">
                         {{ $usuario->getRoleNames()->first() ?? 'Sin asignar' }}
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
+                    <td class="px-3 py-2 sm:px-6 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-800">
                         {{ $usuario->operacion ? $usuario->operacion->nombre : 'Sin asignar' }}
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
+                    <td class="px-3 py-2 sm:px-6 sm:py-4 whitespace-nowrap text-xs sm:text-sm">
                         <a href="{{ route('usuarios.edit', $usuario->id) }}" class="text-blue-500 hover:text-blue-600 mr-3">Editar</a>
                         <form action="{{ route('usuarios.destroy', $usuario->id) }}" method="POST" class="inline">
                             @csrf
