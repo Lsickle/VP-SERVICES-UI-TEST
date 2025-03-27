@@ -35,6 +35,9 @@
       <a href="{{ route('dashboard') }}" class="block p-2 hover:bg-gray-700">Panel de Control</a>
     </li>
     <li>
+      <a href="{{ route('profile.show') }}" class="block p-2 hover:bg-gray-700">Perfil</a>
+    </li>
+    <li>
       <a href="{{ route('dashboard') }}" class="block p-2 hover:bg-gray-700">Cerrar Sesion</a>
     </li>
     <hr class="my-2 border-gray-600">
