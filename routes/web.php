@@ -23,6 +23,14 @@ Route::get('/', function () {
     return view('welcome');
 })->name('bienvenido'); // Se le asigna un nombre a la ruta raiz de la app
 
+Route::prefix('agendamiento/formato-descarga')->group(function () {
+    // Muestra el formulario público de formato-descarga
+    Route::get('/', [FormatoDescarga::class, 'index'])->name('agendamiento.formato-descarga.index');
+
+    // Procesa el envío del formulario de formato-descarga
+    Route::post('/', [FormatoDescarga::class, 'enviar'])->name('agendamiento.formato-descarga.enviar');
+}); //Rutas para el formato de agendamiento de descarga, tanto para mostrar el formato como para enviarlo a la API del Microservicio.
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
