@@ -20,7 +20,7 @@
       <a href="{{ route('seguridad.permisos.index') }}" class="block p-2 hover:bg-gray-700">Permisos</a>
     </li>
     @endif
-    @elseif(request()->routeIs('/'))
+    @elseif(request()->routeIs('bienvenido'))
     <li>
       <a href="{{ route('login') }}" class="block p-2 hover:bg-gray-700">Opción 1</a>
     </li>
