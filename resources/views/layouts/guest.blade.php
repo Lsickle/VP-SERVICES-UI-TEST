@@ -14,13 +14,16 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/global.js' ]) <!-- Se agrega el global con los scripts -->
     @livewireStyles
 </head>
 
 <body class="font-sans antialiased bg-white min-h-screen flex flex-col">
     <!-- Header -->
     @include('components.header')
+
+    <!-- Sidebar -->
+    @include('partials.sidebar')
 
     <!-- Área de contenido: se expande y centra su contenido verticalmente -->
     <main class="flex-grow flex items-center justify-center px-4">

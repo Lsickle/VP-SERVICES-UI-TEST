@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('bienvenido'); // Se le asigna un nombre a la ruta raiz de la app
 
 Route::middleware([
     'auth:sanctum',

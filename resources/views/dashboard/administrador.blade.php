@@ -1,12 +1,11 @@
 @extends('layouts.app')
 
-@section('header')
-<h2 class="center text-xl font-semibold text-white">Panel de Control Administrativo</h2>
-@endsection
-
-
 @section('content')
-<div class="space-y-8">
+<div class="flex">
+<!-- Contenido Principal -->
+<div id="mainContent" class="flex-1 p-8 md:ml-64 transition-all">
+    <h2 class="center text-xl font-semibold text-white">Panel de Control Administrativo</h2>
+
     <!-- Bienvenida -->
     <div class="bg-white rounded-xl p-6 shadow-sm">
         <h1 class="text-3xl font-bold text-gray-800">Bienvenido, {{ Auth::user()->name }}</h1>
@@ -18,8 +17,7 @@
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-sm text-gray-500">Total Permisos</p>
-                    <p class="text-3xl font-bold text-gray-800 mt-2">{{ \Spatie\Permission\Models\Permission::count() }}
-                    </p>
+                    <p class="text-3xl font-bold text-gray-800 mt-2">{{\Spatie\Permission\Models\Permission::count() }}</p>
                 </div>
                 <div class="bg-blue-100 p-3 rounded-full">
                     <span class="text-blue-600 text-xl">🔑</span>
@@ -75,32 +73,6 @@
                     @endforeach
                 </tbody>
             </table>
-        </div>
-    </div>
-
-    <!-- Reportes Rápidos -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="bg-white p-6 rounded-xl shadow-sm">
-            <h3 class="text-lg font-semibold text-gray-800 mb-4">Reportes de Actividad</h3>
-            <p class="text-gray-600 text-sm">
-                Aquí puedes incluir gráficos o indicadores de la actividad del sistema, como el número de acciones
-                realizadas,
-                registros recientes, etc.
-            </p>
-            <a href="#"
-                class="mt-4 inline-block bg-blue-800 text-white py-2 px-4 rounded hover:bg-blue-900 transition-colors">
-                Ver Reportes Detallados
-            </a>
-        </div>
-
-        <div class="bg-white p-6 rounded-xl shadow-sm">
-            <h3 class="text-lg font-semibold text-gray-800 mb-4">Acciones Recientes</h3>
-            <ul class="space-y-2 text-sm text-gray-700">
-                <li>Usuario X creó un nuevo permiso.</li>
-                <li>Usuario Y actualizó un rol.</li>
-                <li>Se importaron 15 registros de trabajadores.</li>
-                <!-- Más acciones -->
-            </ul>
         </div>
     </div>
 
