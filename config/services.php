@@ -31,4 +31,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'microservice' => [
+        'url' => env('ENTRADAS_MICROSERVICE', 'http://localhost:8001'),
+    ],
+
 ];
