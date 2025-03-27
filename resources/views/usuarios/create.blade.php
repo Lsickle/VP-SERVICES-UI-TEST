@@ -1,7 +1,7 @@
-@extends('layouts.administradorlayout')
+@extends('layouts.app')
 
 @section('content')
-<div class="container mx-auto px-4">
+<div class="container mx-auto px-4 mt-5">
     @if(session('success'))
     <div class="mb-6 p-4 bg-green-100 border-l-4 border-green-500 text-green-700" role="alert">
         {{ session('success') }}

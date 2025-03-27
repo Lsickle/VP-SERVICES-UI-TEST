@@ -25,8 +25,8 @@
     <!-- Header -->
     @include('components.header')
 
-    <!-- Área de contenido: centra su contenido verticalmente -->
-    <main class="px-4 md:ml-64">
+    <!-- Área de contenido: centra su contenido verticalmente y expande para ajustarse con los demas componentes-->
+    <main class="flex-grow px-4 md:ml-64">
         @yield('content')
     </main>
 
