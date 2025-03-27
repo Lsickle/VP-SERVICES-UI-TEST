@@ -1,6 +1,14 @@
-// Archvio global para scripts
+// Archivo global para scripts
 
-//Se maneja el Sidebar
+// Función para normalizar el texto: elimina acentos, espacios y pasa a minúsculas
+function normalizeText(text) {
+    return text
+        .normalize("NFD") // descompone caracteres acentuados
+        .replace(/[\u0300-\u036f]/g, "") // elimina marcas de acentos
+        .replace(/\s+/g, "") // elimina espacios
+        .toLowerCase();
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     const sidebarToggle = document.getElementById("sidebarToggle");
     const sidebar = document.getElementById("sidebar");
@@ -27,23 +35,28 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Se añade la Funcionalidad de búsqueda en el sidebar
+    // Funcionalidad de búsqueda en el sidebar
     const sidebarSearch = document.getElementById("sidebarSearch");
     const sidebarList = document.getElementById("sidebarList");
 
     if (sidebarSearch && sidebarList) {
         sidebarSearch.addEventListener("input", function () {
-            let filter = sidebarSearch.value.toLowerCase();
-            let items = sidebarList.getElementsByTagName("li");
+            // Normaliza el filtro de búsqueda
+            let filter = normalizeText(sidebarSearch.value);
 
-            // Itera sobre cada item y filtra según el texto
+            // Itera sobre cada <li> para filtrar
+            let items = sidebarList.getElementsByTagName("li");
             for (let i = 0; i < items.length; i++) {
-                let text = items[i].textContent.toLowerCase();
-                if (text.indexOf(filter) > -1) {
-                    items[i].style.display = "";
-                } else {
-                    items[i].style.display = "none";
-                }
+                let text = normalizeText(items[i].textContent);
+                items[i].style.display =
+                    text.indexOf(filter) > -1 ? "" : "none";
+            }
+
+            // Para los <h2>: si se está buscando (filter distinto de vacío), se ocultan
+            // De lo contrario se muestran
+            let headings = sidebarList.getElementsByTagName("h2");
+            for (let i = 0; i < headings.length; i++) {
+                headings[i].style.display = filter === "" ? "" : "none";
             }
         });
     }
