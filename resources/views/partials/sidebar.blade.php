@@ -34,10 +34,13 @@
     <li>
       <a href="{{ route('dashboard') }}" class="block p-2 hover:bg-gray-700">Panel de Control</a>
     </li>
+    <li>
+      <a href="{{ route('dashboard') }}" class="block p-2 hover:bg-gray-700">Cerrar Sesion</a>
+    </li>
     <hr class="my-2 border-gray-600">
 
     <!-- Opciones adicionales para usuarios autenticados con rol de Administrador -->
-    @if(request()->routeIs('dashboard.administrador') && auth()->user()->hasRole('Administrador'))
+    @if(auth()->user()->hasRole('Administrador'))
     <h2 class="mb-2">Opciones Administrador</h2>
     <li>
       <a href="{{ route('usuarios.index') }}" class="block p-2 hover:bg-gray-700">Gestión de Usuarios</a>
@@ -54,7 +57,7 @@
     @endif
 
     <!-- Opciones adicionales para usuarios autenticados con rol de Autorizador -->
-    @if(request()->routeIs('dashboard.autorizador') && auth()->user()->hasRole('Autorizador'))
+    @if(auth()->user()->hasRole('Autorizador'))
     <h2 class="mb-2">Opciones Administrador</h2>
     <li>
       <a href="{{ route('login') }}" class="block p-2 hover:bg-gray-700">Gestion Solicitudes</a>
