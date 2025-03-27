@@ -13,7 +13,7 @@
     <!-- Opciones para usuarios no autenticados -->
     <h2 class="mb-2">Menú de Opciones</h2>
     <li>
-      <a href="{{ route('bienvenido') }}" class="block p-2 hover:bg-gray-700">Home</a>
+      <a href="{{ route('bienvenido') }}" class="block p-2 hover:bg-gray-700">Inicio</a>
     </li>
     <li>
       <a href="{{ route('login') }}" class="block p-2 hover:bg-gray-700">Iniciar Sesión</a>
