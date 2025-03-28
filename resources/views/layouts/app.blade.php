@@ -27,7 +27,8 @@
 
     <!-- Área de contenido: centra su contenido verticalmente y expande para ajustarse con los demas componentes-->
     <main class="flex-grow px-4 md:ml-64">
-        @yield('content')
+        {{-- Aquí se inyecta el contenido principal --}}
+        {{ $slot }}
     </main>
 
     <!-- Footer -->
