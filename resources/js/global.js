@@ -105,3 +105,16 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+// Agregar funcionalidad de Alpine para los cards dinámicos:
+document.addEventListener('alpine:init', () => {
+    Alpine.data('cardManager', () => ({
+        openCard: null,
+        getFormAction() {
+            if (this.openCard) {
+                let parts = this.openCard.split('-');
+                return "{{ route('solicitudes.update', ['id' => '__ID__']) }}".replace('__ID__', parts[1]);
+            }
+            return "#";
+        }
+    }));
+});
