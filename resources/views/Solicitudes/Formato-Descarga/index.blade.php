@@ -1,4 +1,3 @@
-<!-- resources/views/solicitudes/formato-descarga/index.blade.php -->
 <x-app-layout>
     <div class="container mx-auto py-10" x-data="{ search: '' }">
         <h2 class="text-xl font-semibold text-gray-800 mb-6">Gestión de Solicitudes de Agendamiento</h2>
@@ -33,18 +32,18 @@
                         <template x-if="'{{ $solicitud['op'] }}'.toLowerCase().includes(search.toLowerCase()) || 
                                         '{{ $solicitud['proveedor'] }}'.toLowerCase().includes(search.toLowerCase())">
                             <tr>
-                                <td class="px-2 py-2">{{ \Carbon\Carbon::parse($solicitud['fecha_entrega'])->format('d/m/Y') }}</td>
-                                <td class="px-2 py-2">{{ $solicitud['bodega'] ?? '-' }}</td>
-                                <td class="px-2 py-2">{{ $solicitud['op'] ?? '-' }}</td>
-                                <td class="px-2 py-2">{{ $solicitud['codigo_articulo'] ?? '-' }}</td>
-                                <td class="px-2 py-2">{{ $solicitud['nombre_articulo'] ?? '-' }}</td>
-                                <td class="px-2 py-2">{{ $solicitud['cantidades_pedidas'] ?? '-' }}</td>
-                                <td class="px-2 py-2">{{ $solicitud['placa'] ?? '-' }}</td>
-                                <td class="px-2 py-2">{{ $solicitud['conductor'] ?? '-' }}</td>
-                                <td class="px-2 py-2">{{ $solicitud['cedula'] ?? '-' }}</td>
-                                <td class="px-2 py-2">{{ $solicitud['correo_solicitante'] ?? '-' }}</td>
-                                <td class="px-2 py-2">{{ ucfirst($solicitud['estatus']) }}</td>
-                                <td class="px-2 py-2">{{ \Carbon\Carbon::parse($solicitud['created_at'])->format('d/m/Y') }}</td>
+                                <td class="px-2 py-2 text-center">{{ \Carbon\Carbon::parse($solicitud['fecha_entrega'])->format('d/m/Y') }}</td>
+                                <td class="px-2 py-2 text-center">{{ $solicitud['bodega'] ?? '-' }}</td>
+                                <td class="px-2 py-2 text-center">{{ $solicitud['op'] ?? '-' }}</td>
+                                <td class="px-2 py-2 text-center">{{ $solicitud['codigo_articulo'] ?? '-' }}</td>
+                                <td class="px-2 py-2 text-center">{{ $solicitud['nombre_articulo'] ?? '-' }}</td>
+                                <td class="px-2 py-2 text-center">{{ $solicitud['cantidades_pedidas'] ?? '-' }}</td>
+                                <td class="px-2 py-2 text-center">{{ $solicitud['placa'] ?? '-' }}</td>
+                                <td class="px-2 py-2 text-center">{{ $solicitud['conductor'] ?? '-' }}</td>
+                                <td class="px-2 py-2 text-center">{{ $solicitud['cedula'] ?? '-' }}</td>
+                                <td class="px-2 py-2 text-center">{{ $solicitud['correo_solicitante'] ?? '-' }}</td>
+                                <td class="px-2 py-2 text-center">{{ ucfirst($solicitud['estatus']) }}</td>
+                                <td class="px-2 py-2 text-center">{{ \Carbon\Carbon::parse($solicitud['created_at'])->format('d/m/Y') }}</td>
                             </tr>
                         </template>
                     @endforeach

@@ -35,18 +35,18 @@
                     <template x-if="'{{ $solicitud['op'] }}'.toLowerCase().includes(search.toLowerCase()) || 
                                     '{{ $solicitud['proveedor'] }}'.toLowerCase().includes(search.toLowerCase())">
                         <tr>
-                            <td class="px-2 py-2">{{ \Carbon\Carbon::parse($solicitud['fecha_entrega'])->format('d/m/Y') }}</td>
-                            <td class="px-2 py-2">{{ $solicitud['bodega'] ?? '-' }}</td>
-                            <td class="px-2 py-2">{{ $solicitud['op'] ?? '-' }}</td>
-                            <td class="px-2 py-2">{{ $solicitud['codigo_articulo'] ?? '-' }}</td>
-                            <td class="px-2 py-2">{{ $solicitud['nombre_articulo'] ?? '-' }}</td>
-                            <td class="px-2 py-2">{{ $solicitud['cantidades_pedidas'] ?? '-' }}</td>
-                            <td class="px-2 py-2">{{ $solicitud['placa'] ?? '-' }}</td>
-                            <td class="px-2 py-2">{{ $solicitud['conductor'] ?? '-' }}</td>
-                            <td class="px-2 py-2">{{ $solicitud['cedula'] ?? '-' }}</td>
-                            <td class="px-2 py-2">{{ $solicitud['correo_solicitante'] ?? '-' }}</td>
-                            <td class="px-2 py-2">{{ ucfirst($solicitud['estatus']) }}</td>
-                            <td class="px-2 py-2">
+                            <td class="px-2 py-2 text-center">{{ \Carbon\Carbon::parse($solicitud['fecha_entrega'])->format('d/m/Y') }}</td>
+                            <td class="px-2 py-2 text-center">{{ $solicitud['bodega'] ?? '-' }}</td>
+                            <td class="px-2 py-2 text-center">{{ $solicitud['op'] ?? '-' }}</td>
+                            <td class="px-2 py-2 text-center">{{ $solicitud['codigo_articulo'] ?? '-' }}</td>
+                            <td class="px-2 py-2 text-center">{{ $solicitud['nombre_articulo'] ?? '-' }}</td>
+                            <td class="px-2 py-2 text-center">{{ $solicitud['cantidades_pedidas'] ?? '-' }}</td>
+                            <td class="px-2 py-2 text-center">{{ $solicitud['placa'] ?? '-' }}</td>
+                            <td class="px-2 py-2 text-center">{{ $solicitud['conductor'] ?? '-' }}</td>
+                            <td class="px-2 py-2 text-center">{{ $solicitud['cedula'] ?? '-' }}</td>
+                            <td class="px-2 py-2 text-center">{{ $solicitud['correo_solicitante'] ?? '-' }}</td>
+                            <td class="px-2 py-2 text-center">{{ ucfirst($solicitud['estatus']) }}</td>
+                            <td class="px-2 py-2 text-center">
                                 <!-- Botones para aprobar o rechazar -->
                                 <button x-on:click="openCard = 'aprobar-{{ $solicitud['id'] }}'" class="text-green-600 hover:underline">
                                     Aprobar
