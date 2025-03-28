@@ -1,6 +1,4 @@
-@extends('layouts.guest') {{-- Se usa el layout para invitados --}}
-
-@section('content')
+<x-guest-layout>
 <div class="container mx-auto px-4 mt-5 mb-5">
     <!-- Se agrega un margin bottom para espacio en dispositivos móviles -->
 
@@ -106,4 +104,4 @@
         </div>
     </form>
 </div>
-@endsection
+</x-guest-layout>

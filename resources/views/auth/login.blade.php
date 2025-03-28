@@ -1,6 +1,4 @@
-@extends('layouts.guest')
-
-@section('content')
+<x-guest-layout>
 <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-2xl border border-gray-300 mx-auto mt-10 mb-10">
 
     <!-- Logo -->
@@ -53,4 +51,4 @@
         </div>
     </form>
 </div>
-@endsection
+</x-guest-layout>

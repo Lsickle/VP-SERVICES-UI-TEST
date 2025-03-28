@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-app-layout>
 <div id="mainContent" class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
     <h2 class="text-xl font-semibold text-gray-800 mb-6">Panel de Control Administrativo</h2>
 
@@ -144,4 +142,4 @@
         </div>
     </div>
 </div>
-@endsection
+</x-app-layout>

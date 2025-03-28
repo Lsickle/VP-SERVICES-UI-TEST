@@ -1,6 +1,4 @@
-@extends('layouts.guest')
-
-@section('content')
+<x-guest-layout>
 <div class="w-full flex flex-col space-y-12 mt-10 mb-10">
     <!-- Sección de Bienvenida -->
     <section class="text-center px-4">
@@ -77,4 +75,4 @@
         </div>
     </section>
 </div>
-@endsection
+</x-guest-layout>
