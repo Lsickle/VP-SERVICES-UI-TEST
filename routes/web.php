@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Agendamientos\AgendamientoDescargaController;
 use App\Http\Controllers\Agendamientos\FormatoDescarga;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Operaciones\OperacionController;
@@ -76,4 +77,16 @@ Route::middleware(['permission:Administrar Operaciones'])->prefix('operaciones')
     Route::get('/{operacion}/editar', [OperacionController::class, 'edit'])->name('edit');
     Route::put('/{operacion}', [OperacionController::class, 'update'])->name('update');
     Route::delete('/{operacion}', [OperacionController::class, 'destroy'])->name('destroy');
+});
+// Rutas para Agendamientos (Solicitudes)
+Route::middleware(['permission:Administrar Agendamientos'])->prefix('agendamientos')->name('solicitudes.')->group(function () {
+    // Ruta para la gestión general de solicitudes (todas)
+    Route::get('/gestion', [AgendamientoDescargaController::class, 'index'])
+        ->name('gestion');
+    // Ruta para listar solo las solicitudes pendientes
+    Route::get('/pendientes', [AgendamientoDescargaController::class, 'pendientes'])
+        ->name('pendientes');
+    // Ruta para actualizar una solicitud (aprobación o rechazo)
+    Route::put('/{id}', [AgendamientoDescargaController::class, 'update'])
+        ->name('update');
 });

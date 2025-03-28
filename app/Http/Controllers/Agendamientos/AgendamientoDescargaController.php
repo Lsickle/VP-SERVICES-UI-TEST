@@ -9,33 +9,49 @@ use Illuminate\Support\Facades\Http;
 class AgendamientoDescargaController extends Controller
 {
     /**
-     * Muestra la lista de solicitudes obtenidas desde el microservicio.
+     * Muestra la lista de todas las solicitudes obtenidas desde el microservicio.
      */
     public function index()
     {
-        // Construir la URL del microservicio
         $apiUrl = config('services.microservice.url') . '/api/agendamientos/formato-descarga';
-        
-        // Realizar la solicitud GET al microservicio
         $response = Http::get($apiUrl);
-        
+
         if ($response->successful()) {
-            $solicitudes = $response->json();
+            // Extraemos el array de solicitudes de la clave "agendamientos"
+            $solicitudes = $response->json()['agendamientos'] ?? [];
         } else {
             $solicitudes = [];
         }
         
-        // Pasar las solicitudes a la vista
         return view('solicitudes.formato-descarga.index', compact('solicitudes'));
     }
 
     /**
-     * Actualiza una solicitud (por ejemplo, para aprobar o rechazar) y 
-     * envía la información actualizada al microservicio.
+     * Muestra solo las solicitudes pendientes.
+     */
+    public function pendientes()
+    {
+        $apiUrl = config('services.microservice.url') . '/api/agendamientos/formato-descarga';
+        $response = Http::get($apiUrl);
+
+        if ($response->successful()) {
+            $solicitudes = $response->json()['agendamientos'] ?? [];
+            // Filtrar para obtener solo las solicitudes con estatus "pendiente"
+            $pendientes = collect($solicitudes)->filter(function ($solicitud) {
+                return $solicitud['estatus'] === 'pendiente';
+            })->values()->all();
+        } else {
+            $pendientes = [];
+        }
+
+        return view('solicitudes.formato-descarga.pendientes', compact('pendientes'));
+    }
+
+    /**
+     * Actualiza una solicitud (para aprobar o rechazar) y envía la información actualizada al microservicio.
      */
     public function update(Request $request, $id)
     {
-        // Validar campos en función de la acción (aprobada o rechazada)
         $data = $request->validate([
             'estatus' => 'required|in:aprobada,rechazada',
             'autorizador' => $request->estatus == 'aprobada' ? 'required|string|max:255' : 'nullable',
@@ -43,10 +59,9 @@ class AgendamientoDescargaController extends Controller
             'texto_respuesta_correo' => $request->estatus == 'rechazada' ? 'required|string' : 'nullable',
         ]);
 
-        // Agregar el ID de la solicitud a los datos (si es necesario)
+        // Agregar el ID de la solicitud a los datos
         $data['id'] = $id;
 
-        // Enviar la información actualizada al microservicio
         $apiUrl = config('services.microservice.url') . '/api/actualizar-solicitud';
         $microResponse = Http::post($apiUrl, $data);
 

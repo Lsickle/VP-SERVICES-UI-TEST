@@ -80,10 +80,10 @@
             <div class="bg-white p-6 rounded-xl shadow-sm">
                 <h3 class="text-lg font-semibold text-gray-800 mb-4">Gestión de Solicitudes</h3>
                 <div class="space-y-3">
-                    <a href="{{ route('seguridad.permisos.index') }}"
+                    <a href="{{ route('solicitudes.gestion') }}"
                         class="flex items-center p-3 bg-gray-50 hover:bg-orange-50 rounded-lg transition-colors">
                         <span class="text-orange-600 mr-3">📋</span>
-                        <span class="text-gray-700 font-medium">Listar Solicitudes</span>
+                        <span class="text-gray-700 font-medium">Gestionar Solicitudes</span>
                     </a>
                 </div>
             </div>
