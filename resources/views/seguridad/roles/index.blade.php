@@ -1,6 +1,4 @@
-@extends('layouts.administradorlayout')
-
-@section('content')
+<x-app-layout>
 <div class="container mx-auto px-4">
     <div class="flex justify-between items-center mb-6">
         <h2 class="text-2xl font-bold">Gestión de Roles</h2>
@@ -41,4 +39,4 @@
         </table>
     </div>
 </div>
-@endsection
+</x-app-layout>

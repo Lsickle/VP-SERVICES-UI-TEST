@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-app-layout>
 <div class="container mx-auto px-4 mt-5">
     @if(session('success'))
     <div class="mb-6 p-4 bg-green-100 border-l-4 border-green-500 text-green-700" role="alert">
@@ -106,4 +104,4 @@
         </form>
     </div>
 </div>
-@endsection
+</x-app-layout>

@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-app-layout>
 <div class="container mx-auto px-4 mb-5 mt-5">
     <div class="flex justify-between items-center mb-6">
         <h2 class="text-2xl font-bold">Gestión de Usuarios</h2>
@@ -70,4 +68,4 @@
         {{ $usuarios->appends(request()->input())->links() }}
     </div>
 </div>
-@endsection
+</x-app-layout>
