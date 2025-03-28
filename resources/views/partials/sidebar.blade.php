@@ -24,7 +24,7 @@
       <a href="{{ route('login') }}" class="block p-2 hover:bg-gray-700">Agendar Visita</a>
     </li>
     <li>
-      <a href="{{ route('agendamiento.formato-descarga') }}" class="block p-2 hover:bg-gray-700">Agendar Descarga</a>
+      <a href="{{ route('agendamiento.formato-descarga.index') }}" class="block p-2 hover:bg-gray-700">Agendar Descarga</a> <!-- Modifcación de ruta -->
     </li>    
     @endguest
 
