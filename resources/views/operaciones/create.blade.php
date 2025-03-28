@@ -1,6 +1,4 @@
-@extends('layouts.administradorlayout')
-
-@section('content')
+<x-app-layout>
 <div class="container mx-auto px-4">
     <h2 class="text-2xl font-bold mb-6">Crear Nueva Operación</h2>
 
@@ -37,4 +35,4 @@
         </form>
     </div>
 </div>
-@endsection
+</x-app-layout>
