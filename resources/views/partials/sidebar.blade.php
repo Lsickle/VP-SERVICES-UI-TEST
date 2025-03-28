@@ -74,9 +74,6 @@
           <a href="{{ route('solicitudes.gestion') }}" class="block p-2 hover:bg-gray-700">Gestión Solicitudes</a>
         </li>
         <li>
-          <a href="{{ route('solicitudes.nuevas') }}" class="block p-2 hover:bg-gray-700">Nuevas Solicitudes</a>
-        </li>
-        <li>
           <a href="{{ route('solicitudes.pendientes') }}" class="block p-2 hover:bg-gray-700">Solicitudes Pendientes</a>
         </li>
       @endif

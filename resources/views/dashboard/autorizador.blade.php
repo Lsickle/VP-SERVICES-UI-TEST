@@ -20,11 +20,16 @@
                     </div>
                 </div>
             </div>
-    
+            @php
+            // Filtrar las solicitudes con estatus 'pendiente'
+            $pendientes = collect($solicitudes)->filter(function($solicitud) {
+                return $solicitud['estatus'] === 'pendiente';
+            });
+        @endphp
             <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-purple-500">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-sm text-gray-500">Solicitudes Nuevas</p>
+                        <p class="text-sm text-gray-500">Solicitudes Pendientes</p>
                         <!-- Aquí podrías filtrar las solicitudes nuevas, por ejemplo -->
                         <p class="text-3xl font-bold text-gray-800 mt-2">{{ count($solicitudes) }}</p>
                     </div>
@@ -54,7 +59,7 @@
                             <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-800">{{ $solicitud['op'] ?? '-' }}</td>
                             <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-800">{{ $solicitud['proveedor'] ?? '-' }}</td>
                             <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-800">{{ $solicitud['bodega'] ?? '-' }}</td>
-                            <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-800">{{ \Carbon\Carbon::parse($solicitud['fecha_entrega'] ?? null)->format('d/m/Y') }}</td>
+                            <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-800">{{ $solicitud['fecha_entrega'] ?? '-' }}</td>
                         </tr>
                         @endforeach
                         @if(empty($solicitudes))

@@ -28,9 +28,9 @@ class DashboardController extends Controller
             $response = Http::get($apiUrl);
 
             if ($response->successful()) {
-                $solicitudes = $response->json();
+                // Extraer el array de solicitudes de la clave "agendamientos"
+                $solicitudes = $response->json()['agendamientos'] ?? [];
             } else {
-                // Manejo del error: puedes registrar el error o asignar un array vacío
                 $solicitudes = [];
             }
 
