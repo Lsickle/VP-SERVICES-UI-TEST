@@ -13,11 +13,11 @@ class AgendamientoDescargaController extends Controller
      */
     public function index()
     {
-        $apiUrl = config('services.microservice.url') . '/api/agendamientos/formato-descarga';
+        $apiUrl = config('services.microservice.url') . '/api/agendamientos/formato-descarga/otros';
         $response = Http::get($apiUrl);
 
         if ($response->successful()) {
-            // Extraemos el array de solicitudes de la clave "agendamientos"
+            // Extraemos el arreglo de solicitudes de la clave "agendamientos"
             $solicitudes = $response->json()['agendamientos'] ?? [];
         } else {
             $solicitudes = [];
@@ -27,16 +27,16 @@ class AgendamientoDescargaController extends Controller
     }
 
     /**
-     * Muestra solo las solicitudes pendientes.
+     * Muestra solo las solicitudes pendientes obtenidas desde el microservicio.
      */
     public function pendientes()
     {
-        $apiUrl = config('services.microservice.url') . '/api/agendamientos/formato-descarga';
+        $apiUrl = config('services.microservice.url') . '/api/agendamientos/formato-descarga/pendientes';
         $response = Http::get($apiUrl);
 
         if ($response->successful()) {
             $solicitudes = $response->json()['agendamientos'] ?? [];
-            // Filtrar para obtener solo las solicitudes con estatus "pendiente"
+            // Filtramos para obtener solo las solicitudes con estatus "pendiente"
             $pendientes = collect($solicitudes)->filter(function ($solicitud) {
                 return $solicitud['estatus'] === 'pendiente';
             })->values()->all();

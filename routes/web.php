@@ -89,4 +89,4 @@ Route::middleware(['permission:Administrar Agendamientos'])->prefix('agendamient
     // Ruta para actualizar una solicitud (aprobación o rechazo)
     Route::put('/{id}', [AgendamientoDescargaController::class, 'update'])
         ->name('update');
-});
+    });

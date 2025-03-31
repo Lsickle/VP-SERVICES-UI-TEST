@@ -22,7 +22,7 @@ class DashboardController extends Controller
             return view('dashboard.administrador');
         } elseif ($user->hasRole('Autorizador')) {
             // Definir la URL del microservicio
-            $apiUrl = config('services.microservice.url') . '/api/agendamientos/formato-descarga';
+            $apiUrl = config('services.microservice.url') . '/api/agendamientos/formato-descarga/otros';
 
             // Realizar la solicitud GET al microservicio
             $response = Http::get($apiUrl);
