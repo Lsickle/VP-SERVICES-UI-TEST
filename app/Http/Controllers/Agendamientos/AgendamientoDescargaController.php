@@ -59,11 +59,10 @@ class AgendamientoDescargaController extends Controller
             'texto_respuesta_correo' => $request->estatus == 'rechazada' ? 'required|string' : 'nullable',
         ]);
 
-        // Agregar el ID de la solicitud a los datos
         $data['id'] = $id;
 
-        $apiUrl = config('services.microservice.url') . '/api/actualizar-solicitud';
-        $microResponse = Http::post($apiUrl, $data);
+        $apiUrl = config('services.microservice.url') . '/api/agendamientos/formato-descarga/' . $id;
+        $microResponse = Http::put($apiUrl, $data);
 
         if ($microResponse->successful()) {
             return redirect()->back()->with('success', 'La solicitud ha sido actualizada correctamente.');
