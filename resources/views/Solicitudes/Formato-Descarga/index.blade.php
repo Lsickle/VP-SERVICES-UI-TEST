@@ -4,7 +4,7 @@
         
         <!-- Barra de búsqueda -->
         <div class="mb-4">
-            <input type="text" x-model="search" placeholder="Buscar solicitudes..." class="w-full p-2 border rounded text-sm" />
+            <input type="text" x-model="search" placeholder="Buscar solicitudes por OP o correo..." class="w-full p-2 border rounded text-sm" />
         </div>
         
         <!-- Contenedor para slider horizontal en móvil -->
@@ -29,8 +29,8 @@
                 </thead>
                 <tbody class="divide-y divide-gray-200">
                     @foreach($solicitudes as $solicitud)
-                        <template x-if="'{{ $solicitud['op'] }}'.toLowerCase().includes(search.toLowerCase()) || 
-                                        '{{ $solicitud['proveedor'] }}'.toLowerCase().includes(search.toLowerCase())">
+                        <template x-if="'{{ Str::lower($solicitud['op'] ?? '') }}'.includes(search.toLowerCase()) || 
+                                        '{{ Str::lower($solicitud['correo_solicitante'] ?? '') }}'.includes(search.toLowerCase())">
                             <tr>
                                 <td class="px-2 py-2 text-center">{{ \Carbon\Carbon::parse($solicitud['fecha_entrega'])->format('d/m/Y') }}</td>
                                 <td class="px-2 py-2 text-center">{{ $solicitud['bodega'] ?? '-' }}</td>
@@ -47,6 +47,7 @@
                             </tr>
                         </template>
                     @endforeach
+                    <!-- Mensaje cuando no hay solicitudes -->
                     @if(empty($solicitudes))
                         <tr>
                             <td colspan="12" class="px-2 py-2 text-center text-gray-600">No se encontraron solicitudes.</td>

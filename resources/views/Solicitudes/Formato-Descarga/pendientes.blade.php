@@ -21,8 +21,7 @@
         <!-- Encabezado y búsqueda -->
         <h2 class="text-xl font-semibold text-gray-800 mb-6">Solicitudes Pendientes</h2>
         <div class="mb-4">
-            <input type="text" x-model="search" placeholder="Buscar solicitudes..."
-                class="w-full p-2 border rounded text-sm" />
+            <input type="text" x-model="search" placeholder="Buscar solicitudes por OP o correo..." class="w-full p-2 border rounded text-sm" />
         </div>
 
         <!-- Tabla de solicitudes -->
@@ -47,7 +46,8 @@
                 </thead>
                 <tbody class="divide-y divide-gray-200">
                     @foreach($pendientes as $solicitud)
-                    <template x-if="'{{ $solicitud['op'] }}'.toLowerCase().includes(search.toLowerCase()) || '{{ $solicitud['proveedor'] }}'.toLowerCase().includes(search.toLowerCase())">
+                    <template x-if="'{{ Str::lower($solicitud['op'] ?? '') }}'.includes(search.toLowerCase()) || 
+                                        '{{ Str::lower($solicitud['correo_solicitante'] ?? '') }}'.includes(search.toLowerCase())">
                         <tr>
                             <!-- Celdas de la tabla... -->
                             <td class="px-2 py-2 text-center">{{
@@ -77,6 +77,11 @@
                         </tr>
                     </template>
                     @endforeach
+                    @if(empty($solicitudes))
+                        <tr>
+                            <td colspan="12" class="px-2 py-2 text-center text-gray-600">No se encontraron solicitudes pendientes.</td>
+                        </tr>
+                    @endif
                 </tbody>
             </table>
         </div>
