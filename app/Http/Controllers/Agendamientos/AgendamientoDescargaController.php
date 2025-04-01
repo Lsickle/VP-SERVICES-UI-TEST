@@ -34,15 +34,10 @@ class AgendamientoDescargaController extends Controller
         $apiUrl = config('services.microservice.url') . '/api/agendamientos/formato-descarga/pendientes';
         $response = Http::get($apiUrl);
 
-        if ($response->successful()) {
-            $solicitudes = $response->json()['agendamientos'] ?? [];
-            // Filtramos para obtener solo las solicitudes con estatus "pendiente"
-            $pendientes = collect($solicitudes)->filter(function ($solicitud) {
-                return $solicitud['estatus'] === 'pendiente';
-            })->values()->all();
-        } else {
-            $pendientes = [];
-        }
+        // El endpoint ya retorna solo pendientes
+        $pendientes = $response->successful() 
+            ? $response->json()['agendamientos'] ?? [] 
+            : [];
 
         return view('solicitudes.formato-descarga.pendientes', compact('pendientes'));
     }
@@ -59,15 +54,14 @@ class AgendamientoDescargaController extends Controller
             'texto_respuesta_correo' => $request->estatus == 'rechazada' ? 'required|string' : 'nullable',
         ]);
 
-        $data['id'] = $id;
-
         $apiUrl = config('services.microservice.url') . '/api/agendamientos/formato-descarga/' . $id;
         $microResponse = Http::put($apiUrl, $data);
 
         if ($microResponse->successful()) {
-            return redirect()->back()->with('success', 'La solicitud ha sido actualizada correctamente.');
+            // Redirige a la lista de pendientes, no a "back()"
+        return redirect()->route('solicitudes.pendientes')->with('success', '.Actualización realizada con exito.');
         } else {
-            return redirect()->back()->withErrors('Error al sincronizar la actualización con el microservicio.');
+            return back()->withErrors('Error al sincronizar la actualización con el microservicio.');
         }
     }
 }

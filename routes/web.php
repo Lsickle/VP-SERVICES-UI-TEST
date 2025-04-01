@@ -79,14 +79,15 @@ Route::middleware(['permission:Administrar Operaciones'])->prefix('operaciones')
     Route::delete('/{operacion}', [OperacionController::class, 'destroy'])->name('destroy');
 });
 // Rutas para Agendamientos (Solicitudes)
-Route::middleware(['permission:Administrar Agendamientos'])->prefix('agendamientos')->name('solicitudes.')->group(function () {
-    // Ruta para la gestión general de solicitudes (todas)
-    Route::get('/gestion', [AgendamientoDescargaController::class, 'index'])
-        ->name('gestion');
-    // Ruta para listar solo las solicitudes pendientes
-    Route::get('/pendientes', [AgendamientoDescargaController::class, 'pendientes'])
-        ->name('pendientes');
-    // Ruta para actualizar una solicitud (aprobación o rechazo)
-    Route::put('/{id}', [AgendamientoDescargaController::class, 'update'])
-        ->name('update');
-    });
+Route::middleware(['permission:Administrar Agendamientos'])->prefix('agendamientos')
+->name('solicitudes.')->group(function () {
+
+    Route::get('/gestion', [AgendamientoDescargaController::class, 'index'])->name('gestion');
+    // Grupo para todo lo relacionado a solicitudes PENDIENTES
+    Route::prefix('pendientes')->group(function () {
+    // Listar pendientes
+    Route::get('/', [AgendamientoDescargaController::class, 'pendientes'])->name('pendientes');
+    // Editar (formulario)
+    Route::put('/{id}', [AgendamientoDescargaController::class, 'update'])->name('update');
+        });
+});
