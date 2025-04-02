@@ -21,20 +21,7 @@ class FormatoDescarga extends Controller
      */
     public function enviar(Request $request)
     {
-        $data = $request->validate([
-            'op'                    => 'required|integer',
-            'fecha_entrega'         => 'required|date|after_or_equal:tomorrow',
-            'proveedor'             => 'required|string|max:255',
-            'codigo_articulo'       => 'required|string|max:100',
-            'nombre_articulo'       => 'required|string|max:255',
-            'cantidades_pedidas'    => 'required|integer', // Se modifica el campo a integer
-            'placa'                 => 'required|string|max:20',
-            'conductor'             => 'required|string|max:255',
-            'cedula'                => 'required|string|max:20',
-            'bodega'                => 'required|string|max:100',
-            'correo_solicitante'    => 'required|email|max:255',
-            'celular'               => 'required|string|max:20',
-        ]);
+        $data = $request->all();
 
         // URL de la API del microservicio
         $apiUrl = config('services.microservice.url') . '/api/agendamientos/formato-descarga';

@@ -67,6 +67,7 @@
                                     class="text-green-600 hover:underline">
                                     Aprobar
                                 </button>
+                                |
                                 <button x-on:click="openCard = 'rechazar'; selectedId = '{{ $solicitud['id'] }}'"
                                     class="text-red-600 hover:underline">
                                     Rechazar
