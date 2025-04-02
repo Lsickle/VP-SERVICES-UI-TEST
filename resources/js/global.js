@@ -104,6 +104,36 @@ document.addEventListener("DOMContentLoaded", function () {
             processSection();
         });
     }
+
+    // --- Función para controlar la fecha de entrega en el fomurlario publico ---
+    const fechaEntregaInput = document.getElementById("fecha_entrega");
+
+    if (fechaEntregaInput) {
+        // Obtener la fecha de mañana
+        const mañana = new Date();
+        mañana.setDate(mañana.getDate() + 1);
+
+        // Formatear la fecha de mañana a YYYY-MM-DD para el atributo min
+        const añoMañana = mañana.getFullYear();
+        const mesMañana = String(mañana.getMonth() + 1).padStart(2, "0");
+        const diaMañana = String(mañana.getDate()).padStart(2, "0");
+        const fechaMinima = `${añoMañana}-${mesMañana}-${diaMañana}`;
+
+        // Establecer el atributo min del input de fecha
+        fechaEntregaInput.setAttribute("min", fechaMinima);
+
+        // Opcional: Agregar una validación adicional para navegadores que no soportan 'min'
+        fechaEntregaInput.addEventListener("change", function () {
+            const fechaSeleccionada = new Date(this.value);
+            if (fechaSeleccionada < mañana) {
+                this.value = ""; // Limpiar el campo si la fecha es anterior a mañana
+                alert(
+                    "La fecha de descarga debe ser igual o posterior a mañana."
+                );
+            }
+        });
+    }
+    // --- Fin de la función para controlar la fecha ---
 });
 // Agregar funcionalidad de Alpine para los cards dinámicos:
 document.addEventListener('alpine:init', () => {
