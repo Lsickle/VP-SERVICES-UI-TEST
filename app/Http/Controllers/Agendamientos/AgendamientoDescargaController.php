@@ -47,21 +47,15 @@ class AgendamientoDescargaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->validate([
-            'estatus' => 'required|in:aprobada,rechazada',
-            'autorizador' => $request->estatus == 'aprobada' ? 'required|string|max:255' : 'nullable',
-            'fecha_programada_entrega' => $request->estatus == 'aprobada' ? 'required|date' : 'nullable',
-            'texto_respuesta_correo' => $request->estatus == 'rechazada' ? 'required|string' : 'nullable',
-        ]);
+        $data = $request->all(); // Obtener todos los datos del request
 
         $apiUrl = config('services.microservice.url') . '/api/agendamientos/formato-descarga/' . $id;
         $microResponse = Http::put($apiUrl, $data);
-
+    
         if ($microResponse->successful()) {
-            // Redirige a la lista de pendientes, no a "back()"
-        return redirect()->route('solicitudes.pendientes')->with('success', '.Actualización realizada con exito.');
+            return redirect()->route('solicitudes.pendientes')->with('success', '.Actualización realizada con exito.');
         } else {
             return back()->withErrors('Error al sincronizar la actualización con el microservicio.');
         }
-    }
+    }    
 }
