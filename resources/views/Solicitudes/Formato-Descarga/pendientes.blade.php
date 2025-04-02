@@ -77,7 +77,7 @@
                         </tr>
                     </template>
                     @endforeach
-                    @if(empty($solicitudes))
+                    @if(empty($pendientes))
                         <tr>
                             <td colspan="12" class="px-2 py-2 text-center text-gray-600">No se encontraron solicitudes pendientes.</td>
                         </tr>
