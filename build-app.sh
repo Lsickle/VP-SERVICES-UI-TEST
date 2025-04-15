@@ -3,12 +3,12 @@
 
 # Exit the script if any command fails
 set -e
+cp .env.example .env
 
 # Build assets using NPM
 npm run build
 
 # Clear cache
-php artisan key:generate
 php artisan optimize:clear
 
 # Cache the various components of the Laravel application
