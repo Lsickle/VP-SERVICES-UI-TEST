@@ -13,7 +13,7 @@ class FormatoDescarga extends Controller
      */
     public function index()
     {
-        return view('agendamientos.formato-descarga');
+        return view('Agendamientos.formato-descarga');
     }
 
     /**

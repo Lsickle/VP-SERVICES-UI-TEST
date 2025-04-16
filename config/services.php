@@ -32,7 +32,7 @@ return [
     ],
 
     'microservice' => [
-        'url' => env('ENTRADAS_MICROSERVICE', 'http://localhost:8001'),
+        'url' => env('ENTRADAS_MICROSERVICE', 'https://vps-core-test-production.up.railway.app'),
     ],
 
 ];

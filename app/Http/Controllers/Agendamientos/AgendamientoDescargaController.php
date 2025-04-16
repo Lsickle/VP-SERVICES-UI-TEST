@@ -23,7 +23,7 @@ class AgendamientoDescargaController extends Controller
             $solicitudes = [];
         }
         
-        return view('solicitudes.formato-descarga.index', compact('solicitudes'));
+        return view('Solicitudes.formato-descarga.index', compact('solicitudes'));
     }
 
     /**
@@ -39,7 +39,7 @@ class AgendamientoDescargaController extends Controller
             ? $response->json()['agendamientos'] ?? [] 
             : [];
 
-        return view('solicitudes.formato-descarga.pendientes', compact('pendientes'));
+        return view('Solicitudes.formato-descarga.pendientes', compact('pendientes'));
     }
 
     /**
