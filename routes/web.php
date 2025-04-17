@@ -29,7 +29,7 @@ Route::prefix('agendamiento/formato-descarga')->name('agendamiento.formato-desca
     Route::get('/', [FormatoDescarga::class, 'index'])->name('index');
 
     // Procesa el envío del formulario de formato-descarga
-    Route::post('/', [FormatoDescarga::class, 'enviar'])->name('enviar');
+    Route::post('/enviar', [FormatoDescarga::class, 'enviar'])->name('enviar');
 }); //Rutas para el formato de agendamiento de descarga, tanto para mostrar el formato como para enviarlo a la API del Microservicio.
 
 Route::middleware([
