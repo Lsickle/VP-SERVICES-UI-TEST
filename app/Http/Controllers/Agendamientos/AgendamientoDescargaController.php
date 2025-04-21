@@ -23,7 +23,7 @@ class AgendamientoDescargaController extends Controller
             $solicitudes = [];
         }
         
-        return view('Solicitudes.formato-descarga.index', compact('solicitudes'));
+        return view('Solicitudes.Formato-Descarga.index', compact('solicitudes'));
     }
 
     /**
@@ -39,7 +39,7 @@ class AgendamientoDescargaController extends Controller
             ? $response->json()['agendamientos'] ?? [] 
             : [];
 
-        return view('Solicitudes.formato-descarga.pendientes', compact('pendientes'));
+        return view('Solicitudes.Formato-Descarga.pendientes', compact('pendientes'));
     }
 
     /**
@@ -53,7 +53,7 @@ class AgendamientoDescargaController extends Controller
         $microResponse = Http::put($apiUrl, $data);
     
         if ($microResponse->successful()) {
-            return redirect()->route('solicitudes.pendientes')->with('success', '.Actualización realizada con exito.');
+            return redirect()->route('Solicitudes.Formato-Descarga.pendientes')->with('success', '.Actualización realizada con exito.');
         } else {
             return back()->withErrors('Error al sincronizar la actualización con el microservicio.');
         }
