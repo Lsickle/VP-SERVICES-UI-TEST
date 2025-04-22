@@ -32,7 +32,7 @@ return [
     ],
 
     'microservice' => [
-        'url' => env('ENTRADAS_MICROSERVICE', 'https://vps-core-test-production.up.railway.app'),
+        'url' => env('ENTRADAS_MICROSERVICE', 'https://vps-core-test-local.up.railway.app'),
     ],
 
 ];
