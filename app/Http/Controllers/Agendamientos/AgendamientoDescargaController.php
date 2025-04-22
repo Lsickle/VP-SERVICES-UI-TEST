@@ -53,7 +53,7 @@ class AgendamientoDescargaController extends Controller
         $microResponse = Http::put($apiUrl, $data);
     
         if ($microResponse->successful()) {
-            return redirect()->route('Solicitudes.Formato-Descarga.pendientes')->with('success', '.Actualización realizada con exito.');
+            return redirect()->route('solicitudes.pendientes')->with('success', '.Actualización realizada con exito.');
         } else {
             return back()->withErrors('Error al sincronizar la actualización con el microservicio.');
         }
